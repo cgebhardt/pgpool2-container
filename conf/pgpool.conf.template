@@ -216,7 +216,7 @@ reset_query_list = 'ABORT; DISCARD ALL'
 # REPLICATION MODE
 #------------------------------------------------------------------------------
 
-replication_mode = off
+replication_mode = on
                                    # Activate replication mode
                                    # (change requires restart)
 replicate_select = off
