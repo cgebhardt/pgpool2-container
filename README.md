@@ -18,3 +18,5 @@ This project can be used to deploy pgpool2 inside a Docker container for transpa
 **PGPOOL_PORT** - The port used by pgpool2 to listen for client connections. (default: 5432)
 
 **PGPOOL_BACKENDS** - A comma separated list of PostgeSQL server backends. The format for each backend is as follows: INDEX:HOST:PORT (default: 1:localhost:5432)
+
+**POOL_PASSWD** - Unencrypted pool password.
