@@ -29,6 +29,10 @@ def pgpool_get_configuration():
 		if not len(item.split(':')) == 3:
 			raise ValueError('Invalid Backend: %s' % item)
 	configuration.update({ 'pgpool_backends': value })
+        value = os.getenv('POOL_PASSWD', 'pool_passwd')
+        hash = hashlib.md5()
+        hash.update(value)
+        configuration.update({ 'pool_passwd': value })
 	return configuration
 
 def run(app, *args):
@@ -51,6 +55,8 @@ if __name__ == "__main__":
 	pgpool = templates.get_template('pgpool.conf.template') \
 										.render(configuration)
 	write(pgpool, '/etc/pgpool2/pgpool.conf')
+        pool_passwd = configuration.get('POOL_PASSWD')
+        write(pool_passwd, '/etc/pgpool2/pool_passwd')
 	# Start the container.
 	try:
 		run('pgpool', '-n', '-f', '/etc/pgpool2/pgpool.conf', '-F', '/etc/pgpool2/pcp.conf')
