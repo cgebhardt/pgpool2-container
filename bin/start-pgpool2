@@ -34,7 +34,7 @@ def pgpool_get_configuration():
     value = os.getenv('POOL_PASSWD', 'pool_passwd')
     hash = hashlib.md5()
     hash.update(value)
-    configuration.update({'pool_passwd': '{}:{}'.format(
+    configuration.update({'pool_passwd': '{}:{}\n'.format(
         pool_username,
         hash.hexdigest(),
     )})
