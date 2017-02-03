@@ -32,7 +32,7 @@ def pgpool_get_configuration():
         value = os.getenv('POOL_PASSWD', 'pool_passwd')
         hash = hashlib.md5()
         hash.update(value)
-        configuration.update({ 'pool_passwd': value })
+        configuration.update({ 'pool_passwd': hash.hexdigest() })
 	return configuration
 
 def run(app, *args):
